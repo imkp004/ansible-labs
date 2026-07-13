@@ -13,5 +13,20 @@
         create_home: true
         state: present
     
+    - name: adding the .ssh folder in the user dir
+      tags: adduser, ssh
+      file:
+        path: /home/Kirtan/.ssh
+        state: directory
+        mode: '0700'
+        owner: Kirtan
+        group: Kirtan
+
+    - name: adding the ssh public key in the .ssh
+      tags: ssh,key,adduser
+      ansible.posix.authorized_key:
+        user: Kirtan
+        state: present
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgIqB/XMUGgRBSKf90WkVqaR0J8m2pWOJb6bu1xaDAQf93wUC2P1coXFcJ3CmYHvWjQZ4FPjgSNsiy4+eJCETWjbuktMsF7axFPXAMztD66XA7Z2F1/UjktJgV4gt10zJ8w9L/o5uPu56ggKT+5Ux8msx3YWygP+30hp6xef8LQcaX+epgLAs2evYwBN8aRpQBi4P6tnKy/LRBF1qRLZvAtr2v6basVOiIFr4i870JzypCDIDEk7c0Ju2m5nMz6NkGMFFm9zS+LeKI4DdHHaM/26SMMS8TXBeK+3Mfqb2YyR6vwWgJlNTn5uysKl7u4SfDhoN7MWltfpTN3XZWZ5h3 kirtan-key"
      
        
