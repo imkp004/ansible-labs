@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: true
+  
+  tasks: 
+
+    - name: uninstalling apache from ubuntu
+      tags: uninstall
+      apt:
+        name: apache2
+        state: absent
+      when: ansible_os_family == "Debian"
+
+    - name: uninstalling apache from amazon
+      tags: uninstall
+      dnf:
+        name: httpd
+        state: absent
+      when: ansible_os_family == "RedHat"
