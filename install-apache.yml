@@ -1,0 +1,28 @@
+---
+
+- hosts: all
+  become: true
+
+  tasks:
+    
+    - name: installing apache in ubuntu
+      tags: apache,httpd
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: installing httpd in amazon
+      tags: apache,httpd
+      dnf:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Starting httpd in amazon
+      tags: apache,httpd
+      service: 
+        name: httpd
+        state: started
+        enabled: yes
+      when: ansible_os_family == "RedHat"
