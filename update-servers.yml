@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  
+  tasks:
+    - name: updating the package cache in ubuntu
+      tags: update
+      apt:
+        update_cache: yes
+        upgrade: dist
+      when: ansible_os_family == "Debian"
+
+    - name: upating the package cache in amazon
+      tags: update
+      dnf:
+        name: "*"
+        state: latest
+      when: ansible_os_family == "RedHat"
