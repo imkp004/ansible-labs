@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  
+  tasks:
+   
+    - name: installing php in all servers
+      tags: php
+      package:
+        name: php
+        state: present
