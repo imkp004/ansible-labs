@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  
+  tasks:
+    
+    - name: installing packages in servers
+      tags: congif,package
+      package:
+        name:
+          - git
+          - vim
+          - wget
+        state: present
