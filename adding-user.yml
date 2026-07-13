@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: true
+  
+  tasks:
+    
+    - name: adding user in the servers
+      tags: adduser
+      ansible.builtin.user:
+        name: Kirtan
+        shell: /bin/bash
+        create_home: true
+        state: present
+    
+     
+       
