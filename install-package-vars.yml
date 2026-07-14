@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  
+  tasks:
+
+    - name: installing packages through variables
+      package:
+        name: "{{ package_name }}"
+        state: present
